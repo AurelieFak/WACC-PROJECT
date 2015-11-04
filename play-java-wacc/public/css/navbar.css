@@ -1,0 +1,168 @@
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+#citylist{
+    position : absolute;
+    align-content: center;
+    left : 5%;
+    width : 100%;
+}
+
+.temp {
+    font-size : small;
+    font-family: "Courier New";
+}
+
+.bigtemp {
+    font-size : medium;
+    font-family: "Courier New";
+}
+
+.rain {
+    font-size : small;
+    font-family: "Courier New";
+}
+
+.mm {
+    font-size : small;
+    font-family: "Courier New";
+}
+
+.city {
+    font-family: "Courier New";
+    font-size : small;
+    font-variant : small-caps;
+    font-weight: bold;
+}
+
+.bigcity {
+    font-family: "Courier New";
+    font-size : medium;
+    font-variant : small-caps;
+    font-weight: bold;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+.title {
+    position : absolute;
+    top : 5%;
+    left : 2%;
+    font-variant : small-caps;
+    font-size: 150%;
+    font-family: fantasy;
+    font-weight: bold;
+}
+
+.listtitle {
+    position : absolute;
+    top : 5%;
+    left : 2%;
+    font-variant : small-caps;
+    font-size: 200%;
+    font-family: fantasy;
+    font-weight: bold;
+}
+
+.jumbotron {
+    position : absolute;
+    top : 15%;
+    left : 5%;
+    width : 40%;
+    height : 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: rgba(238, 238, 238, 0.7);
+}
+
+.stats {
+    position : absolute;
+    top : 15%;
+    right : 10%;
+    width : 40%;
+    height : 100%;
+}
+
+#meanTemp {
+    position : absolute;
+    padding-top: 6%;
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+    color: inherit;
+    background-color: rgba(166, 225, 236, 0.6);
+    height : 25%;
+    width : 100%;
+}
+
+#meanRain {
+    position : absolute;
+    padding-top: 6%;
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+    color: inherit;
+    background-color: rgba(166, 225, 236, 0.6);
+    top : 30%;
+    height : 25%;
+    width : 100%;
+}
+
+#minMax {
+    position : absolute;
+    padding-top: 6%;
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+    color: inherit;
+    background-color: rgba(166, 225, 236, 0.6);
+    top : 60%;
+    height : 25%;
+    width : 100%;
+}
+
+
+.jumbotron h1,
+.jumbotron .h1 {
+    color: inherit;
+}
+.jumbotron p {
+    margin-bottom: 15px;
+    font-size: 21px;
+    font-weight: 200;
+}
+.jumbotron > hr {
+    border-top-color: #d5d5d5;
+}
+.container .jumbotron,
+.container-fluid .jumbotron {
+    border-radius: 6px;
+}
+
+.jumbotron .container {
+    max-width: 100%;
+}
+
+@media screen and (min-width: 300px) {
+    .jumbotron {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+    .container .jumbotron,
+    .container-fluid .jumbotron {
+        padding-right: 60px;
+        padding-left: 60px;
+    }
+    .jumbotron h1,
+    .jumbotron .h1 {
+        font-size: 63px;
+    }
+}

@@ -1,0 +1,14 @@
+New log file opened at Wed Nov 04 14:09:58 CET 2015 by 2388@admin-PC
+Taking next connection to: 50568
+New client attempting to connect on port: 50570-50568
+  Address = /192.168.56.1:50568
+This client on port 50570 has uuid 3cd5f187-c66a-49ad-9937-bdaddd9248b8 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: play-fork-run-3cd5f187-c66a-49ad-9937-bdaddd9248b8
+Taking next connection to: 50568
+Checking to see if clients are empty...
+No non-daemon clients connected after 3 min. Shutting down.
+1 daemon clients are connected.
+Server socket thread exiting.
+1 clients open, will close them...
+All client sockets have been closed.
+Closing the 2388@admin-PC logs at Wed Nov 04 14:13:07 CET 2015, goodbye.

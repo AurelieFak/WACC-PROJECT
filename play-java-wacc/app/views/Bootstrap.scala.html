@@ -1,0 +1,170 @@
+@import com.datastax.driver.core.Row
+
+@import com.google.gson.JsonElement
+@(title: String, printList : java.util.List[weather])(content: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>@title</title>
+
+            <!-- Bootstrap core CSS -->
+        <link href="@routes.Assets.versioned("css/bootstrap.min.css")" rel="stylesheet">
+
+            <!-- Custom styles for this template -->
+        <link href="@routes.Assets.versioned("css/navbar.css")" rel="stylesheet">
+
+            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+            <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    </head>
+
+    <body background="http://7-themes.com/data_images/out/45/6924603-clouds-background-hd.jpg">
+
+        <div class="container">
+
+                <!-- Static navbar -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Weather Analysis</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#">Web Cloud Computing Project by Antonis Koutounidis, Maurine Kacel & Aur&eacutelie Fakambi</a></li>
+
+                        </ul>
+
+                    </div><!--/.nav-collapse -->
+                </div><!--/.container-fluid -->
+            </nav>
+
+                <!-- Main component for a primary marketing message or call to action -->
+            <div class="jumbotron">
+                <span class="listtitle">CITIES AROUND THE WORLD :</span><br><br>
+                <div id="citylist"><ul>
+                @for(weather<-printList){
+                    <li><img src="@weather.getIcon" width="40"> &nbsp;&nbsp; <span class='bigcity'>@weather.getCity</span> : <span class="bigtemp">@weather.getTemperature &deg C</span></li> <br><br>
+                    }
+                </ul>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div id="meanTemp"><span class="title"> Average temperature of the last 5 days :</span><br>
+
+                </div>
+                <div id="meanRain"><span class="title"> Average of the precipitation level :</span><br>
+
+                </div>
+                <div id="minMax"><span class="title"> Maximum and minimum tempatures recorded :</span><br>
+
+                </div>
+            </div>
+
+        </div> <!-- /container -->
+
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../../dist/js/bootstrap.min.js"></script>
+            <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+        <script type="application/javascript">
+
+
+           $( document ).ready(function() {
+                setInterval(function(){
+                    $.getJSON( "api", function( data ) {
+                        jQuery('#citylist').html('');
+                        var items = [];
+                        $.each( data, function( key, val ) {
+                            console.log(key, val);
+                            console.log(key);
+                            console.log(val);
+                            items.push( "<li id=' " +key+ "'> <img src=' "+ val.icon + "' width='40'> &nbsp;&nbsp; <span class='bigcity'>" +val.city + "</span> : <span class='bigtemp'> " + val.temperature + "&deg C</span></li> <br><br>");
+                        });
+                        $( "<ul>", {
+                            "class" : "new-list",
+                            html : items.join("")
+                        }).appendTo( "#citylist" );
+                    });
+
+                 // Handler for .ready() called.
+               }, 5000);
+           });
+           $( document ).ready(function() {
+                    $.getJSON( "meanTemp", function( data ) {
+
+                        var items = [];
+                        $.each( data, function( key, val ) {
+
+                            items.push( "<li id=' " +key+ "'><span class='city'>" +val.city + " : </span><span class='temp'>" + val.temperature.toFixed(0) + " &deg C</span></li>");
+                        });
+                        $( "<ul>", {
+                            html : items.join("")
+                        }).appendTo( "#meanTemp" );
+                    });
+
+           });
+           $( document ).ready(function() {
+                    $.getJSON( "meanRain", function( data ) {
+
+                        var items = [];
+                        $.each( data, function( key, val ) {
+
+                            items.push( "<li id=' " +key+ "'><span class='city'>" +val.city + " : </span><span class='rain'>" + val.rain.toFixed(2) + " pMM</span></li>");
+                        });
+                        $( "<ul>", {
+                            html : items.join("")
+                        }).appendTo( "#meanRain" );
+                    });
+
+           });
+           $( document ).ready(function() {
+                    $.getJSON( "max_min", function( data ) {
+
+                        var items = [];
+                        $.each( data, function( key, val ) {
+                            console.log(key, val);
+                            items.push( "<li id=' " +key+ "'><span class='city'>" +val.city + " </span><span class='mm'>[ Min : " + val.mintemperature + " &deg C & Max : " +val.maxtemperature+ " &deg C ]</span></li>");
+                        });
+                        $( "<ul>", {
+                            html : items.join("")
+                        }).appendTo( "#minMax" );
+                    });
+
+           });
+
+           $( document ).ready(function() {
+                   setInterval(function(){
+                    $.getJSON( "datastream", function( data ) {
+
+
+                    });}, 290000);
+
+           });
+
+
+        </script>
+    </body>
+</html>
